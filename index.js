@@ -43,6 +43,16 @@ app.put("/patient", async(req,res) => {
 })
 
 
+app.put("/patients", async(req,res) => {
+    try {
+        const update = await Patient.findOneAndUpdate( 
+            {FirstName:req.body.firstName,Surname:req.body.surName},
+            {Vitals:req.body.vitals});
+        res.status(200).json(update);
+    } catch (error) {
+        console.log(error.message);
+    }
+})
 
 
 
