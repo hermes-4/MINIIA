@@ -66,6 +66,19 @@ app.get("/patientss",async(req,res) => {
 })
 
 
+app.get("/patient/:stname/:ndname", async(req,res) => {
+    try {      
+        const update = await Patient.find( 
+            {FirstName:req.params.stname,Surname:req.params.ndname},
+            {vitals:true,appointments:true});
+        console.log(req.params.name);
+        res.status(200).json(update);
+    } catch (error) {
+        console.log(error.message);
+    }
+})
+
+
 
 app.listen(3000, ()=> {
     console.log('Node server is running')
