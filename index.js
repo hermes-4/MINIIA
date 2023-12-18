@@ -30,6 +30,18 @@ app.post("/patient", async(req,res) => {
 })
 
 
+app.put("/patient", async(req,res) => {
+    try {
+        const update = await Patient.findOneAndUpdate(
+            {FirstName:req.body.firstName,Surname:req.body.surName},
+            {Appointments:req.body.appointments}
+        );
+        res.status(200).json(update)
+    } catch (error) {
+        console.log(error.message);
+    }
+})
+
 
 
 
